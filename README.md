@@ -4,7 +4,7 @@
 
 | Column             | Type     | Options                   |
 | ------------------ | -------- | ------------------------- |
-| nickname           | string   | null:false                |
+| nickname           | string   | null: false                |
 | email              | string   | null: false, unique: true |
 | encrypted_password | string   | null: false               |
 | family_name        | string   | null: false               |
@@ -59,7 +59,7 @@
 | municipality  | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | text       |                                |
-| phone_number  | integer    | null: false                    |
+| phone_number  | string     | null: false                    |
 | order         | references | null: false, foreign_key: true |
 
 ### Association
