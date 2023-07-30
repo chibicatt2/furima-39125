@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :charge
   belongs_to :area
-  belongs_to :time
+  belongs_to :shipping_date
   belongs_to :user
   has_one_attached :image
 
@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   validates :condition_id, presence: true
   validates :charge_id, presence: true
   validates :area_id, presence: true
-  validates :time_id, presence: true
+  validates :shipping_date_id, presence: true
 
 
  with_options numericality: { other_than: 1 , message: "can't be blank"} do
@@ -23,7 +23,7 @@ class Item < ApplicationRecord
    validates :condition_id
    validates :charge_id
    validates :area_id
-   validates :time_id
+   validates :shipping_date_id
  end
 
   with_options presence: true, format: { with: /\A[0-9]+\z/, message: '半角数字で入力してください' } do
