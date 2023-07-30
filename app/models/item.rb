@@ -8,9 +8,23 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :image, :name, :explanation, presence: true
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :explanation, presence: true
+  validates :category_id, presence: true
+  validates :condition_id, presence: true
+  validates :charge_id, presence: true
+  validates :area_id, presence: true
+  validates :time_id, presence: true
 
-  validates :category_id, :condition_id, :charge_id, :area_id, :time_id, numericality: { other_than: 1 , message: "can't be blank"}
+
+ with_options numericality: { other_than: 1 , message: "can't be blank"} do
+   validates :category_id
+   validates :condition_id
+   validates :charge_id
+   validates :area_id
+   validates :time_id
+ end
 
   with_options presence: true, format: { with: /\A[0-9]+\z/, message: '半角数字で入力してください' } do
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }

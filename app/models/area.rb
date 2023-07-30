@@ -1,5 +1,5 @@
 class Area < ActiveHash::Base
-  self.date = [
+  self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '北海道' },
     { id: 3, name: '青森県' },
