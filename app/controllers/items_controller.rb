@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     # 商品一覧機能で実装する
-    # @item = Item.all 
+    # @item = Item.all
   end
 
   def new
