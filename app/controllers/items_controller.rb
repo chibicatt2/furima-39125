@@ -23,10 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user_id
+    return if current_user.id == @item.user_id
 
-      redirect_to root_path
-    end
+    redirect_to root_path
   end
 
   def update
@@ -47,6 +46,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-
 end
