@@ -5,7 +5,7 @@ RSpec.describe OrderDerivery, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     order = FactoryBot.create(:order)
-    @order_derivery = FactoryBot.build(:order_derivery, user_id: user.id, item_id: item.id, order_id: order.id)
+    @order_derivery = FactoryBot.build(:order_derivery, user_id: user.id, item_id: item.id)
   end 
 
   describe '購入情報の保存' do
@@ -57,6 +57,12 @@ RSpec.describe OrderDerivery, type: :model do
         expect(@order_derivery.errors.full_messages).to include("Phone number 10桁以上11桁以内の半角数字で入力してください")
       end
 
+      it 'tokenが空では保存ができないこと' do
+        @order_derivery.token = nil
+        @order_derivery.valid?
+        expect(@order_derivery.errors.full_messages).to include("Token can't be blank")
+      end
+
       it 'userが紐づいていないと保存ができないこと' do
         @order_derivery.user_id = nil
         @order_derivery.valid?
@@ -69,11 +75,6 @@ RSpec.describe OrderDerivery, type: :model do
         expect(@order_derivery.errors.full_messages).to include("Item can't be blank")
       end
 
-      it 'orderが紐づいていないと保存ができないこと' do
-        @order_derivery.order_id = nil
-        @order_derivery.valid?
-        expect(@order_derivery.errors.full_messages).to include("Order can't be blank")
-      end
 
     end
   end
