@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
     @order_derivery = OrderDerivery.new
     @item = Item.find(params[:item_id])
     return if @item.order.blank?
-      redirect_to root_path
-  
+
+    redirect_to root_path
   end
 
   def create
