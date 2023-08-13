@@ -1,12 +1,18 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :item_find
 
   def index
     @order_derivery = OrderDerivery.new
-    @item = Item.find(params[:item_id])
-    return if @item.order.blank?
-
-    redirect_to root_path
+    item_find
+    if current_user.id == @item.user_id 
+      redirect_to root_path
+      
+    elsif @item.order.blank?
+      item_find
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -16,7 +22,7 @@ class OrdersController < ApplicationController
       @order_derivery.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
+      item_find
       render :index
     end
   end
@@ -37,5 +43,9 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
   end
 end
