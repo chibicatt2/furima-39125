@@ -4,9 +4,10 @@ class OrdersController < ApplicationController
   def index
     @order_derivery = OrderDerivery.new
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id 
+    if current_user.id == @item.user_id
       redirect_to root_path
-    else @item.order.blank?
+    else
+      @item.order.blank?
       redirect_to root_path
     end
   end
@@ -26,12 +27,14 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_derivery).permit(:postcode, :area_id, :municipality, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_derivery).permit(:postcode, :area_id, :municipality, :address, :building_name, :phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
