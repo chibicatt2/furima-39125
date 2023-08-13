@@ -5,9 +5,8 @@ class OrdersController < ApplicationController
   def index
     @order_derivery = OrderDerivery.new
     item_find
-    if current_user.id == @item.user_id 
+    if current_user.id == @item.user_id
       redirect_to root_path
-      
     elsif @item.order.blank?
       item_find
     else
