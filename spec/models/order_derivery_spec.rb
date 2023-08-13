@@ -20,7 +20,7 @@ RSpec.describe OrderDerivery, type: :model do
     end
 
     context '内容に問題がある場合' do
-      it 'postcodeが空だと保存できないこと' do
+      it 'postcodeが空では保存できないこと' do
         @order_derivery.postcode = ''
         @order_derivery.valid?
         expect(@order_derivery.errors.full_messages).to include("Postcode can't be blank")
@@ -48,6 +48,12 @@ RSpec.describe OrderDerivery, type: :model do
         @order_derivery.address = ''
         @order_derivery.valid?
         expect(@order_derivery.errors.full_messages).to include("Address can't be blank")
+      end
+
+      it 'phone_numberが空では保存ができない' do
+        @order_derivery.phone_number = ''
+        @order_derivery.valid?
+        expect(@order_derivery.errors.full_messages).to include('Phone number 10桁以上11桁以内の半角数字で入力してください')
       end
 
       it 'phone_numberが10桁以上11桁以内の半角数字でないと保存ができない' do
