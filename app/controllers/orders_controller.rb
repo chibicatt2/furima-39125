@@ -5,11 +5,7 @@ class OrdersController < ApplicationController
   def index
     @order_derivery = OrderDerivery.new
     item_find
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    elsif @item.order.blank?
-      item_find
-    else
+    if current_user.id == @item.user_id or @item.order.present?
       redirect_to root_path
     end
   end
@@ -35,7 +31,6 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
