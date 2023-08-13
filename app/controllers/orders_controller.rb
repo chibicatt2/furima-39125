@@ -4,12 +4,9 @@ class OrdersController < ApplicationController
   def index
     @order_derivery = OrderDerivery.new
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
+    return if @item.order.blank?
       redirect_to root_path
-    else
-      @item.order.blank?
-      redirect_to root_path
-    end
+  
   end
 
   def create
