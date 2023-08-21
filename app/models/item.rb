@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :explanation, presence: true
 
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
+  with_options numericality: { other_than: 1, message: 'を入力してください' } do
     validates :category_id
     validates :condition_id
     validates :charge_id
@@ -21,7 +21,7 @@ class Item < ApplicationRecord
     validates :shipping_date_id
   end
 
-  with_options presence: true, format: { with: /\A[0-9]+\z/, message: '半角数字で入力してください' } do
+  with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'は半角数字で入力してください' } do
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   end
 end
