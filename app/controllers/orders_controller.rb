@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :item_find
 
   def index
-    @order_derivery = OrderDerivery.new
+    @order_delivery = OrderDelivery.new
     item_find
     return unless current_user.id == @item.user_id or @item.order.present?
 
@@ -11,10 +11,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order_derivery = OrderDerivery.new(order_params)
-    if @order_derivery.valid?
+    @order_delivery = OrderDelivery.new(order_params)
+    if @order_delivery.valid?
       pay_item
-      @order_derivery.save
+      @order_delivery.save
       redirect_to root_path
     else
       item_find
@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_derivery).permit(:postcode, :area_id, :municipality, :address, :building_name, :phone_number).merge(
+    params.require(:order_delivery).permit(:postcode, :area_id, :municipality, :address, :building_name, :phone_number).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end
