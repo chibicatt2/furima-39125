@@ -23,7 +23,7 @@ RSpec.describe OrderDelivery, type: :model do
       it 'postcodeが空では保存できないこと' do
         @order_delivery.postcode = ''
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include('郵便番号を入力してください','郵便番号は半角のハイフンを含んだ正しい形式で入力してください')
+        expect(@order_delivery.errors.full_messages).to include('郵便番号を入力してください', '郵便番号は半角のハイフンを含んだ正しい形式で入力してください')
       end
 
       it 'postcodeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
@@ -53,7 +53,7 @@ RSpec.describe OrderDelivery, type: :model do
       it 'phone_numberが空では保存ができない' do
         @order_delivery.phone_number = ''
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include('電話番号を入力してください','電話番号は10桁以上11桁以内の半角数字で入力してください')
+        expect(@order_delivery.errors.full_messages).to include('電話番号を入力してください', '電話番号は10桁以上11桁以内の半角数字で入力してください')
       end
 
       it 'phone_numberが10桁以上11桁以内の半角数字でないと保存ができない' do

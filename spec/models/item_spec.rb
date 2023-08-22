@@ -64,7 +64,7 @@ RSpec.describe Item, type: :model do
       it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('価格を入力してください','価格は半角数字で入力してください','価格は数値で入力してください')
+        expect(@item.errors.full_messages).to include('価格を入力してください', '価格は半角数字で入力してください', '価格は数値で入力してください')
       end
 
       it 'priceが300円未満では出品できない' do
