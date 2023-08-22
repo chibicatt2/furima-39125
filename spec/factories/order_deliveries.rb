@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :order_derivery do
+  factory :order_delivery do
     postcode         { '123-4567' }
     area_id          { 14 }
     municipality     { '新宿区' }
