@@ -85,7 +85,7 @@
 
   <div class="comment-box">
    <% if user_signed_in? %>
-      <%= form_with model: [@item, @comment], class: 'comment-form', local: true do |f| %>
+      <%= form_with model: [@item, @comment], id: 'comment-form', local: true do |f| %>
             <%= f.text_area :text ,class: "comment-text"%>
             <p class="comment-warn">
               相手のことを考え丁寧なコメントを心がけましょう。
@@ -97,7 +97,7 @@
               <%# image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
       <% end %>
     <% end %>
-    <div class="comments-list">
+    <div class="comments-list", id="comments">
       <h4>＜コメント一覧＞</h4>
       <% @item.comments.each do |comment| %>
         <p class="comments">
