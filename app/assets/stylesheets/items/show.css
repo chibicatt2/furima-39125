@@ -175,6 +175,19 @@
   margin-bottom: 2vh;
 }
 
+.comments-list {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px 0px;
+  text-align: left;
+  line-height: 2.5;
+}
+
+.comments {
+  color: cornflowerblue;
+  font-weight: bold;
+}
+
 .comment-flag {
   display: flex;
   justify-content: center;
