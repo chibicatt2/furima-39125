@@ -70,11 +70,11 @@
 
 ## comments
 
-| Column    | Type    | Options                        |
-| --------- | ------- | ------------------------------ |
-| user      | integer | null: false, foreign_key: true |
-| item      | integer | null: false, foreign_key: true |
-| text      | text    | null: false                    |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
+| text      | text       |                                |
 
 ### Association
 - belongs_to :user
